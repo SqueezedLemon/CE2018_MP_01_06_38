@@ -66,7 +66,7 @@ char Queue :: dequeue(){
 
 }
 
-char Queue :: peekFront(){
+char Queue :: front(){
     if (isEmpty()){
         cout << "Queue Underflow!" <<endl;
         return '-';
@@ -76,7 +76,7 @@ char Queue :: peekFront(){
     }
 }
 
-char Queue :: peekRear(){
+char Queue :: rear(){
     if (isEmpty()){
         cout << "Queue Overflow!" << endl;
         return '-';
@@ -109,8 +109,8 @@ int main(){
     Q.enqueue('B');
     Q.traverse();
     cout << "-----------------------------" << endl;
-    cout << Q.peekFront() << endl;
-    cout << Q.peekRear() << endl;
+    cout << Q.front() << endl;
+    cout << Q.rear() << endl;
     cout << "-----------------------------" << endl;
     Q.dequeue();
     Q.dequeue();
