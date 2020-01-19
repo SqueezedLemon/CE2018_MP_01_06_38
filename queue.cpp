@@ -7,6 +7,7 @@ using std :: endl;
 
 int count = 0;
 
+
 Queue :: Queue(){
     HEAD = NULL;
     TAIL = NULL;
@@ -15,7 +16,7 @@ Queue :: Queue(){
 Queue :: ~Queue(){}
 
 bool Queue :: isEmpty(){
-    return (HEAD == NULL);
+    return (count==0 || HEAD==NULL);
 }
 
 void Queue::checkEmpty(){
@@ -30,6 +31,7 @@ void Queue :: enqueue(char data){
         cout << "Queue Overflow!" << endl;
     }
     else{
+    	
         Node *newNode = new Node();
         newNode -> info = data;
         newNode -> next = NULL;
@@ -42,16 +44,16 @@ void Queue :: enqueue(char data){
             TAIL -> next = newNode;
             TAIL = newNode;
             TAIL->next=HEAD;
-        }
+        } 
         count++;
     }
 }
 
 char Queue :: dequeue(){
-    if (isEmpty()){
+		if (isEmpty()){
         cout << "Queue Underflow!" << endl;
         return '-';
-    }
+    	}	
     else{
         Node *toDelete;
         char value;
@@ -62,8 +64,7 @@ char Queue :: dequeue(){
         count--;
         TAIL->next=HEAD;
         return value;
-    }
-
+    	}
 }
 
 char Queue :: front(){
@@ -78,7 +79,7 @@ char Queue :: front(){
 
 char Queue :: rear(){
     if (isEmpty()){
-        cout << "Queue Overflow!" << endl;
+        cout << "Queue Underflow!" << endl;
         return '-';
     }
     else{
@@ -87,12 +88,18 @@ char Queue :: rear(){
 }
 
 void Queue :: traverse(){
-    Node *temp = HEAD;
-    while (temp->next != HEAD){
+	if (isEmpty())
+        cout << "Queue Underflow!" << endl;
+    else
+	{
+    	Node *temp = HEAD;
+    	while (temp->next != HEAD)
+		{
         cout << temp -> info <<endl;
         temp = temp -> next;
-    }
-    cout << temp->info <<endl;
+    	}
+    	cout << temp->info <<endl;
+	}
 }
 
 
@@ -114,10 +121,17 @@ int main(){
     cout << "-----------------------------" << endl;
     Q.dequeue();
     Q.dequeue();
+    Q.checkEmpty();
     Q.enqueue('m');
     Q.enqueue('n');
     Q.enqueue('o');
     Q.traverse();
+    Q.dequeue();
+    Q.dequeue();
+    Q.dequeue();
+    Q.dequeue();
+    Q.dequeue();
+    Q.dequeue();
     cout << "-----------------------------" << endl;
     Q.checkEmpty();
     return 0;
